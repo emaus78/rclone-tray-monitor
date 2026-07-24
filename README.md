@@ -31,12 +31,6 @@ Originally developed for **Mailbox.org WebDAV**. It can be adapted to other rclo
 
 ---
 
-## Installation
-
-Coming soon.
-
----
-
 ## Configuration
 
 The monitor can be used with **any rclone remote**.
