@@ -48,6 +48,27 @@ class RcloneMonitor(QObject):
         """Background thread to monitor the service"""
         while self.is_running:
             try:
+                # First check if service is running
+                try:
+                    result = subprocess.run(
+                        ["systemctl", "--user", "is-active", self.service_name],
+                        capture_output=True,
+                        text=True,
+                        timeout=5
+                    )
+                    is_active = result.returncode == 0
+                except:
+                    is_active = True
+                
+                if not is_active:
+                    # Service is stopped/inactive
+                    self.status = "error"
+                    self.last_message = "Service stopped"
+                    print(f"[MONITOR] Status: ERROR (service stopped)")
+                    self.status_changed.emit(self.status, self.last_message)
+                    time.sleep(2)
+                    continue
+                
                 logs = self.get_log()
                 
                 # Check if logs changed (new activity)
@@ -55,7 +76,7 @@ class RcloneMonitor(QObject):
                     self.prev_log_output = logs
                     logs_lower = logs.lower()
                     
-                    # Check for errors
+                    # Check for errors in logs
                     if "error" in logs_lower or "failed" in logs_lower or "exception" in logs_lower:
                         self.status = "error"
                         print(f"[MONITOR] Status: ERROR")
@@ -120,17 +141,17 @@ class IconGenerator:
         
         color = colors.get(status, QColor(100, 100, 100))
         
-        # Add pulsing effect for syncing - green to yellow
+        # Add pulsing effect for syncing - yellow to blue
         if status == "syncing":
-            # Pulse between green and yellow
+            # Pulse between yellow and blue
             pulse = (1 + math.sin(animation_frame * 0.5)) / 2
             
-            # Green: (76, 175, 80)
             # Yellow: (255, 193, 7)
+            # Blue: (33, 150, 243)
             color = QColor(
-                int(76 + (255 - 76) * pulse),      # R: 76 -> 255
-                int(175 + (193 - 175) * pulse),    # G: 175 -> 193
-                int(80 + (7 - 80) * pulse)         # B: 80 -> 7
+                int(255 + (33 - 255) * pulse),      # R: 255 -> 33
+                int(193 + (150 - 193) * pulse),     # G: 193 -> 150
+                int(7 + (243 - 7) * pulse)          # B: 7 -> 243
             )
         
         # Draw circle
