@@ -386,16 +386,23 @@ Everything is non-blocking - your system stays responsive.
 ## Screenshots
 
 ### Idle (Green)
+idle.png
 System tray shows green circle
 
 ### Syncing (Yellow-Blue Pulse)
+syncing.png
 System tray shows pulsing yellow-to-blue animation for 3 seconds minimum
 
 ### Error (Red)
+
 System tray shows red circle when service has errors or is stopped
 
 ### Menu
+menu.png
 Right-click shows status, folder link, log viewer, and service controls
+
+### Help
+help.png
 
 ---
 
