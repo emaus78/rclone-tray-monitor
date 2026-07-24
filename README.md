@@ -1,32 +1,33 @@
 # Rclone Tray Monitor
 
-A lightweight Linux system tray application for monitoring **any rclone systemd user service**.
+A lightweight system tray monitor for **rclone** services on Linux.
 
-Originally developed for **Mailbox.org WebDAV**, but it works with **Google Drive, OneDrive, Dropbox, Nextcloud, Proton Drive, WebDAV, S3, and any other rclone remote** by changing just a few configuration values.
+It watches an **rclone systemd user service**, displays its current status in the system tray, and provides quick access to logs, your synchronized folder, and service controls.
 
----
+Originally developed for **Mailbox.org WebDAV**. It can be adapted to other rclone services by changing the service name, folder path, and displayed name.
 
 ## Features
 
-- 🟢 Tray icon when idle
-- 🟡 Animated icon while syncing
-- 🔴 Error indication
+- 🟢 Green tray icon when idle
+- 🟡 Animated tray icon while syncing
+- 🔴 Red tray icon on errors
 - Live tooltip showing recent activity
-- Open your sync folder
-- View live service logs
+- View systemd journal logs
 - Restart the rclone service
+- Open the synchronized folder
 - Lightweight and fast
-- Uses `journalctl` to detect activity
+- Native PyQt6 application
+- Designed for Linux desktops
 
 ---
 
 ## Requirements
 
-- Linux
 - Python 3
 - PyQt6
 - rclone
-- systemd user service
+- systemd (user service)
+- Linux desktop with system tray support
 
 ---
 
@@ -50,25 +51,72 @@ No other code changes are required.
 
 ---
 
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/emaus78/rclone-tray-monitor.git
+cd rclone-tray-monitor
+```
+
+Install PyQt6.
+
+Arch / Manjaro:
+
+```bash
+sudo pacman -S python-pyqt6
+```
+
+Ubuntu:
+
+```bash
+sudo apt install python3-pyqt6
+```
+
+Run:
+
+```bash
+python3 rclone_tray_monitor.py
+```
+## Configuration
+
+The application is configured for my personal Mailbox.org setup.
+
+To use it with your own rclone service, edit:
+
+- systemd service name
+- synchronized folder path
+- display name shown in the tray
+
+No other code changes should be required.
+
 ## Screenshots
 
 ### Idle
 
-*(coming soon)*
+![](images/idle.png)
 
 ### Syncing
 
-*(coming soon)*
+![](images/syncing.png)
 
 ### Context Menu
 
-*(coming soon)*
+![](images/menu.png)
 
 ### Help
 
-*(coming soon)*
-
+![](images/help.png)
 ---
+
+## Roadmap
+
+- [ ] Configuration file
+- [ ] Automatic installer
+- [ ] Better desktop detection
+- [ ] Generic configuration
+- [ ] Improved service monitoring
 
 ## License
 
