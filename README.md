@@ -33,13 +33,12 @@ Originally developed for **Mailbox.org WebDAV** and **OX Drive** based on workfl
    git clone [https://github.com/emaus78/rclone-tray-monitor.git](https://github.com/emaus78/rclone-tray-monitor.git)
    cd rclone-tray-monitor
 
-```
 
 2. Run the installer:
-```bash
-bash install.sh
 
-```
+   ```bash
+   bash install.sh
+
 
 
 3. Follow the quick prompts to auto-detect your service and directory.
@@ -155,12 +154,3 @@ journalctl --user -u your_service.service -n 20 -f
 ---
 
 MIT License | Happy syncing! 🚀
-
-```
-
----
-
-### File Format Check
-Make sure the filenames inside your `images/` directory match the exact extensions (e.g. `.png` or `.jpg`). If your screenshots are JPEGs, simply change `images/idle.png` to `images/idle.jpg` in the Markdown table above!
-
-```
