@@ -8,9 +8,9 @@ Originally developed for **Mailbox.org WebDAV** and **OX Drive** based on workfl
 
 ## Screenshots
 
-| Idle State | Syncing State | Error State | Context Menu / Help |
-| :---: | :---: | :---: | :---: |
-| ![Idle Status](images/idle.png) | ![Syncing Status](images/syncing.png) | ![Error Status](images/error.png) | ![Help Dialog](images/help.png) |![Menu Dialog](images/Menu.png) |
+| Idle State | Syncing State | Error State | Context Menu  | Help |
+| :---: | :---: | :---: | :---: | :---: |
+| ![Idle Status](images/idle.png) | ![Syncing Status](images/syncing.png) | ![Error Status](images/error.png) | ![Menu Dialog](images/menu.png) | ![Help Dialog](images/help.png) |
 
 
 ## Features
@@ -102,9 +102,14 @@ EOF
 
 ## Find Your Service Name
 
-```bash
-systemctl --user list-units | grep -i rclone
+To find the exact systemd user service name running your sync:
 
+```bash
+# List services containing "rclone", "sync", "rdrive", or "drive"
+systemctl --user list-units --type=service | grep -iE "rclone|sync|rdrive|drive"
+
+# Or list all active user services
+systemctl --user list-units --type=service
 ```
 
 ## Uninstall
